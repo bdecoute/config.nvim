@@ -200,6 +200,15 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- vim.keymap.set("n", "<C-S-j>", "<C-w>J", { desc = "Move window to the lower" })
 -- vim.keymap.set("n", "<C-S-k>", "<C-w>K", { desc = "Move window to the upper" })
 
+-- [[ User Defined Commands ]]
+--
+-- Background remove
+-- vim.api.nvim_create_user_command('BG', function(opts)
+--   if opts.fargs[1] == 'None' then
+--     vim.cmd 'hi Normal guibg=NONE ctermbg=NONE'
+--   end
+-- end, { nargs = 1, complete = { 'None' } })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
