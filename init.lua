@@ -190,6 +190,15 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
+-- [[ User Defined Commands ]]
+--
+-- Background remove
+-- vim.api.nvim_create_user_command('BG', function(opts)
+--   if opts.fargs[1] == 'None' then
+--     vim.cmd 'hi Normal guibg=NONE ctermbg=NONE'
+--   end
+-- end, { nargs = 1, complete = { 'None' } })
+
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
 
