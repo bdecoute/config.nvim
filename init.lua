@@ -193,11 +193,21 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 -- [[ User Defined Commands ]]
 --
 -- Background remove
--- vim.api.nvim_create_user_command('BG', function(opts)
---   if opts.fargs[1] == 'None' then
---     vim.cmd 'hi Normal guibg=NONE ctermbg=NONE'
---   end
--- end, { nargs = 1, complete = { 'None' } })
+-- vim.api.nvim_create_user_command('Test', 'echo "It works!"', {})
+vim.api.nvim_create_user_command('BG', function(opts)
+  if opts.fargs[1] == 'None' then
+    vim.cmd 'hi Normal guibg=NONE ctermbg=NONE'
+    vim.cmd 'hi NonText guibg=NONE ctermbg=NONE'
+  elseif opts.fargs[1] == 'Set' then
+    vim.cmd 'hi Normal guibg=bg ctermbg=bg'
+    vim.cmd 'hi NonText guibg=bg ctermbg=bg'
+  end
+end, {
+  nargs = 1,
+  complete = function()
+    return { 'None', 'Set' }
+  end,
+})
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
