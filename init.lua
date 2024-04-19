@@ -644,6 +644,7 @@ require('lazy').setup({
       end,
       formatters_by_ft = {
         lua = { 'stylua' },
+        markdown = { 'markdownlint-cli2' },
         -- Conform can also run multiple formatters sequentially
         -- python = { "isort", "black" },
         --
@@ -866,6 +867,15 @@ require('lazy').setup({
   { -- GitHub Copilot
     'github/copilot.vim',
     cmd = 'Copilot',
+  },
+  { -- Markdown Preview
+    'iamcco/markdown-preview.nvim',
+    cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
+    build = 'cd app && npm install',
+    init = function()
+      vim.g.mkdp_filetypes = { 'markdown' }
+    end,
+    ft = { 'markdown' },
   },
 
   -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
