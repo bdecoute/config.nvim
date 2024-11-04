@@ -832,6 +832,17 @@ require('lazy').setup({
       --  into multiple repos for maintenance purposes.
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
+      { -- Copilot
+        'zbirenbaum/copilot.lua',
+        opts = {
+          suggestions = { enabled = false },
+          panel = { enabled = false },
+        },
+      },
+      { -- Transforming copilot.lua to cmp src
+        'zbirenbaum/copilot-cmp',
+        opts = {},
+      },
     },
     config = function()
       -- See `:help cmp`
@@ -907,6 +918,7 @@ require('lazy').setup({
           },
           { name = 'nvim_lsp' },
           { name = 'luasnip' },
+          { name = 'copilot' },
           { name = 'path' },
         },
       }
@@ -1014,10 +1026,10 @@ require('lazy').setup({
       { '<leader>lg', '<cmd>LazyGit<cr>', desc = 'LazyGit' },
     },
   },
-  { -- GitHub Copilot
+  --[[ { -- GitHub Copilot
     'github/copilot.vim',
     cmd = 'Copilot',
-  },
+  }, ]]
   { -- Markdown Preview
     'iamcco/markdown-preview.nvim',
     cmd = { 'MarkdownPreviewToggle', 'MarkdownPreview', 'MarkdownPreviewStop' },
