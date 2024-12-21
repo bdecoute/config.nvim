@@ -207,10 +207,12 @@ vim.keymap.set('n', '<C-l>', '<C-w><C-l>', { desc = 'Move focus to the right win
 vim.keymap.set('n', '<C-j>', '<C-w><C-j>', { desc = 'Move focus to the lower window' })
 vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper window' })
 
-vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Escape without moving arm'})
+vim.keymap.set('i', 'kj', '<Esc>', { desc = 'Escape without moving arm' })
 
 -- Edit snippet files
-vim.keymap.set('n', '<leader>sp', function () require("luasnip.loaders").edit_snippet_files() end, { desc = 'Edit Snippet Files' })
+vim.keymap.set('n', '<leader>sp', function()
+  require('luasnip.loaders').edit_snippet_files()
+end, { desc = 'Edit Snippet Files' })
 -- [[ User Defined Commands ]]
 --
 -- Background remove
@@ -444,7 +446,9 @@ require('lazy').setup({
       vim.keymap.set('n', '<leader>sh', builtin.help_tags, { desc = '[S]earch [H]elp' })
       vim.keymap.set('n', '<leader>sk', builtin.keymaps, { desc = '[S]earch [K]eymaps' })
       vim.keymap.set('n', '<leader>sf', builtin.find_files, { desc = '[S]earch [F]iles' })
-      vim.keymap.set('n', '<leader>sF', function() builtin.find_files( { hidden = true } ) end, { desc = '[S]earch [F]iles inc hidden' })
+      vim.keymap.set('n', '<leader>sF', function()
+        builtin.find_files { hidden = true }
+      end, { desc = '[S]earch [F]iles inc hidden' })
       vim.keymap.set('n', '<leader>ss', builtin.builtin, { desc = '[S]earch [S]elect Telescope' })
       vim.keymap.set('n', '<leader>sw', builtin.grep_string, { desc = '[S]earch current [W]ord' })
       vim.keymap.set('n', '<leader>sg', builtin.live_grep, { desc = '[S]earch by [G]rep' })
@@ -756,7 +760,7 @@ require('lazy').setup({
         c = { 'clang-format' },
         cpp = { 'clang-format' },
         -- Conform can also run multiple formatters sequentially
-        python = { "isort", "black" },
+        python = { 'isort', 'black' },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
@@ -791,27 +795,25 @@ require('lazy').setup({
             'rafamadriz/friendly-snippets',
             config = function(_, opts)
               if opts then
-                require("luasnip").config.setup(opts)
+                require('luasnip').config.setup(opts)
               end
-              vim.tbl_map(
-                function (type)
-                  require("luasnip.loaders.from_" .. type).lazy_load()
-                end, { "vscode", "snipmate", "lua" }
-              )
+              vim.tbl_map(function(type)
+                require('luasnip.loaders.from_' .. type).lazy_load()
+              end, { 'vscode', 'snipmate', 'lua' })
               -- friendly-snippets - enable standardized comments snippets
               -- require("luasnip").filetype_extend("typescript", { "tsdoc" })
               -- require("luasnip").filetype_extend("javascript", { "jsdoc" })
-              require("luasnip").filetype_extend("lua", { "luadoc" })
-              require("luasnip").filetype_extend("python", { "pydoc" })
+              require('luasnip').filetype_extend('lua', { 'luadoc' })
+              require('luasnip').filetype_extend('python', { 'pydoc' })
               -- require("luasnip").filetype_extend("rust", { "rustdoc" })
               -- require("luasnip").filetype_extend("cs", { "csharpdoc" })
               -- require("luasnip").filetype_extend("java", { "javadoc" })
-              require("luasnip").filetype_extend("c", { "cdoc" })
-              require("luasnip").filetype_extend("cpp", { "cppdoc" })
+              require('luasnip').filetype_extend('c', { 'cdoc' })
+              require('luasnip').filetype_extend('cpp', { 'cppdoc' })
               -- require("luasnip").filetype_extend("php", { "phpdoc" })
               -- require("luasnip").filetype_extend("kotlin", { "kdoc" })
               -- require("luasnip").filetype_extend("ruby", { "rdoc" })
-              require("luasnip").filetype_extend("sh", { "shelldoc" })
+              require('luasnip').filetype_extend('sh', { 'shelldoc' })
             end,
           },
         },

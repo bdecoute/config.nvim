@@ -26,7 +26,7 @@ return {
 
     -- Add your own debuggers here
     -- 'leoluz/nvim-dap-go',
-    'mfussenegger/nvim-dap-python'
+    'mfussenegger/nvim-dap-python',
   },
   keys = {
     -- Basic debugging keymaps, feel free to change to your liking!
@@ -134,6 +134,7 @@ return {
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
         -- 'delve',
+        'python',
         'debugpy',
       },
     }
@@ -185,6 +186,6 @@ return {
     --   },
     -- }
     -- Install python specific config
-    require('dap-python').setup('/home/bdecoute/.local/share/pyenv/debugpy/bin/python')
+    require('dap-python').setup '/home/bdecoute/.local/share/pyenv/debugpy/bin/python'
   end,
 }
