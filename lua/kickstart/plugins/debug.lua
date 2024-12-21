@@ -17,12 +17,15 @@ return {
     -- Required dependency for nvim-dap-ui
     'nvim-neotest/nvim-nio',
 
+    -- Required for the default icons.
+    'ChristianChiarulli/neovim-codicons',
+
     -- Installs the debug adapters for you
     'williamboman/mason.nvim',
     'jay-babu/mason-nvim-dap.nvim',
 
     -- Add your own debuggers here
-    'leoluz/nvim-dap-go',
+    -- 'leoluz/nvim-dap-go',
     'mfussenegger/nvim-dap-python'
   },
   keys = {
@@ -35,11 +38,25 @@ return {
       desc = 'Debug: Start/Continue',
     },
     {
+      '<leader>bc',
+      function()
+        require('dap').continue()
+      end,
+      desc = 'Debug: Start/Continue <F5>',
+    },
+    {
       '<F1>',
       function()
         require('dap').step_into()
       end,
       desc = 'Debug: Step Into',
+    },
+    {
+      '<leader>bi',
+      function()
+        require('dap').step_into()
+      end,
+      desc = 'Debug: Step Into <F1>',
     },
     {
       '<F2>',
@@ -49,6 +66,13 @@ return {
       desc = 'Debug: Step Over',
     },
     {
+      '<leader>bo',
+      function()
+        require('dap').step_over()
+      end,
+      desc = 'Debug: Step Over <F2>',
+    },
+    {
       '<F3>',
       function()
         require('dap').step_out()
@@ -56,14 +80,21 @@ return {
       desc = 'Debug: Step Out',
     },
     {
-      '<leader>b',
+      '<leader>be',
+      function()
+        require('dap').step_out()
+      end,
+      desc = 'Debug: Step Out (exit) <F3>',
+    },
+    {
+      '<leader>bb',
       function()
         require('dap').toggle_breakpoint()
       end,
       desc = 'Debug: Toggle Breakpoint',
     },
     {
-      '<leader>B',
+      '<leader>bB',
       function()
         require('dap').set_breakpoint(vim.fn.input 'Breakpoint condition: ')
       end,
@@ -76,6 +107,13 @@ return {
         require('dapui').toggle()
       end,
       desc = 'Debug: See last session result.',
+    },
+    {
+      '<leader>bt',
+      function()
+        require('dapui').toggle()
+      end,
+      desc = 'Debug: See last session result. <F7>',
     },
   },
   config = function()
@@ -95,7 +133,8 @@ return {
       -- online, please don't ask me how to install them :)
       ensure_installed = {
         -- Update this to ensure that you have the debuggers for the langs you want
-        'delve',
+        -- 'delve',
+        'debugpy',
       },
     }
 
@@ -138,13 +177,13 @@ return {
     dap.listeners.before.event_exited['dapui_config'] = dapui.close
 
     -- Install golang specific config
-    require('dap-go').setup {
-      delve = {
-        -- On Windows delve must be run attached or it crashes.
-        -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
-        detached = vim.fn.has 'win32' == 0,
-      },
-    }
+    -- require('dap-go').setup {
+    --   delve = {
+    --     -- On Windows delve must be run attached or it crashes.
+    --     -- See https://github.com/leoluz/nvim-dap-go/blob/main/README.md#configuring
+    --     detached = vim.fn.has 'win32' == 0,
+    --   },
+    -- }
     -- Install python specific config
     require('dap-python').setup('/home/bdecoute/.local/share/pyenv/debugpy/bin/python')
   end,
