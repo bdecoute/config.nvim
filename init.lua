@@ -698,6 +698,8 @@ require('lazy').setup({
       local ensure_installed = vim.tbl_keys(servers or {})
       vim.list_extend(ensure_installed, {
         'stylua', -- Used to format Lua code
+        'isort', -- Used to sort python import statements alphabetically and by type
+        'black', -- Used to ensure pep8 style for python
       })
       require('mason-tool-installer').setup { ensure_installed = ensure_installed }
 
@@ -732,7 +734,7 @@ require('lazy').setup({
     },
     opts = {
       notify_on_error = false,
-      --[[ format_on_save = function(bufnr)
+      format_on_save = function(bufnr)
         -- Disable "format_on_save lsp_fallback" for languages that don't
         -- have a well standardized coding style. You can add additional
         -- languages here or re-enable it for the disabled ones.
@@ -747,14 +749,14 @@ require('lazy').setup({
           timeout_ms = 500,
           lsp_format = lsp_format_opt,
         }
-      end, ]]
+      end,
       formatters_by_ft = {
         lua = { 'stylua' },
         markdown = { 'markdownlint-cli2' },
         c = { 'clang-format' },
         cpp = { 'clang-format' },
         -- Conform can also run multiple formatters sequentially
-        -- python = { "isort", "black" },
+        python = { "isort", "black" },
         --
         -- You can use 'stop_after_first' to run the first available formatter from the list
         -- javascript = { "prettierd", "prettier", stop_after_first = true },
