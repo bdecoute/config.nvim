@@ -671,7 +671,10 @@ require('lazy').setup({
         --
         -- But for many setups, the LSP (`ts_ls`) will work just fine
         -- ts_ls = {},
-        --
+
+        -- bitbake_language_server = {},
+        -- bitbake_ls = {},
+        -- NOTE: Not available in mason-lspconfig yet.
 
         lua_ls = {
           -- cmd = {...},
@@ -719,6 +722,10 @@ require('lazy').setup({
           end,
         },
       }
+
+      -- Manually setting up bitbake_language_server because this is not available in mason-lspconfig
+      -- It is installed with Mason manually
+      require('lspconfig').bitbake_ls.setup {}
     end,
   },
 
