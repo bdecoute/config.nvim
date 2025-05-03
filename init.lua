@@ -209,6 +209,7 @@ vim.keymap.set('n', '<C-k>', '<C-w><C-k>', { desc = 'Move focus to the upper win
 --
 -- Background remove
 -- vim.api.nvim_create_user_command('Test', 'echo "It works!"', {})
+--[[ Removing this user created command for the better working package: xiyaowong/transparant.nvim
 vim.api.nvim_create_user_command('BG', function(opts)
   if opts.fargs[1] == 'None' then
     vim.cmd 'hi Normal guibg=NONE ctermbg=NONE'
@@ -223,6 +224,7 @@ end, {
     return { 'None', 'Set' }
   end,
 })
+--]]
 
 -- [[ Basic Autocommands ]]
 --  See `:help lua-guide-autocommands`
@@ -1015,6 +1017,10 @@ require('lazy').setup({
       vim.g.mkdp_filetypes = { 'markdown' }
     end,
     ft = { 'markdown' },
+  },
+
+  { -- Transparent
+    'xiyaowong/transparent.nvim'
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
