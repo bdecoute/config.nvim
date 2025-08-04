@@ -160,6 +160,4 @@ cmake -DCMAKE_EXPORT_COMPILE_COMMANDS=1 ..
 > Watch out not to call third party services to generate the uml renders.
 > Many popular plugins actually do this by default.
 
-This requires installing some stuff.
-
-[ ] TODO: complete instructions and config snippit
+Follow the instructions on <https://github.com/bdecoute/docs/blob/master/markdownPreview/neovim.md>  
