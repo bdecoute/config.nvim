@@ -1037,8 +1037,18 @@ require('lazy').setup({
     build = 'cd app && npm install',
     init = function()
       vim.g.mkdp_filetypes = { 'markdown' }
+      vim.g.mkdp_preview_options = { uml = {server = 'http://localhost:8000/plantuml/svg/'} }
+      -- vim.cmd([[
+      --   let g:mkdp_preview_options = {
+      --     \ 'uml': {'server': 'http://localhost:8000/plantuml/svg/'}
+      --     \ }
+      -- ]])
     end,
     ft = { 'markdown' },
+    config = function()
+      local _ = vim.fn.jobstart('java -jar ${HOME}/src/plantuml/plantuml-1.2025.2.jar -picoweb:8000',
+        {stderr_buffered = true})
+    end,
   },
 
   -- The following comments only work if you have downloaded the kickstart repo, not just copy pasted the
