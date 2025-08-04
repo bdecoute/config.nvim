@@ -62,7 +62,7 @@ After reading and understanding the kickstart.nvim configuration and the readme 
 
 #### First. Install Lazygit.
 ```bash
-sudo pacman -Sy lazygit
+sudo pacman -S lazygit
 ```
 
 If you forget this step. No worries. lazygit.nvim will notify you when it is not installed. It is a quick fix.
@@ -118,7 +118,7 @@ Simply uncomment `pyright = {}`
 > Read the readme of 'neovim/nvim-lspconfig'
 
 ```bash
-sudo pacman -Sy npm
+sudo pacman -S npm
 ```
 
 ### C and C++ Language Server
